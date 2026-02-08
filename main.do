@@ -164,3 +164,52 @@ foreach g in k 1 2 3 {
         indicate("School FE = _Ischid*") ///
         title("Results for Grade `g'")
 }
+
+
+// ******************************************************************************
+// EXERCISE 4: Addressing Hawthorne and John Henry (Krueger Section E)
+// ******************************************************************************
+
+** 1. Stack the data so we can pool grades
+preserve
+
+    * Drop potential naming conflicts
+    foreach v in score csize ctype schid totexp hdeg {
+        cap drop `v' 
+    }
+
+    * Keep IDs and grade-indexed variables
+    keep newid whiteasiandummy girl yob score* csize* ctype* schid* totexp* hdeg*
+         
+    * Reshape into "Long" format
+    reshape long score csize ctype schid totexp hdeg, i(newid) j(grade_char) string
+
+    ** 2. SAVE STACKED DATA TEMPORARILY
+    tempfile stacked_data
+    save `stacked_data'
+
+    ** 3. TEST A: CONTROL GROUP ONLY (Krueger Replication)
+    keep if inlist(ctype, 2, 3)
+    
+    display "--- RUNNING CONTROL GROUP ONLY REGRESSION ---"
+    xi: reg score csize i.grade_char whiteasiandummy girl totexp i.hdeg i.schid, robust
+
+    local t_stat_con = _b[csize] / _se[csize]
+    display "****************************************************"
+    display "REPLICATED T-STATISTIC (CONTROL ONLY): `t_stat_con'"
+    display "****************************************************"
+
+    ** 4. TEST B: TREATMENT GROUP ONLY (Additional Test)
+    use `stacked_data', clear
+    keep if ctype == 1
+    
+    display "--- RUNNING TREATMENT GROUP ONLY REGRESSION ---"
+    xi: reg score csize i.grade_char whiteasiandummy girl totexp i.hdeg i.schid, robust
+
+    local t_stat_treat = _b[csize] / _se[csize]
+    display "****************************************************"
+    display "T-STATISTIC (TREATMENT ONLY): `t_stat_treat'"
+    display "****************************************************"
+
+restore
+
