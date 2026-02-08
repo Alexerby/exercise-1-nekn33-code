@@ -1,0 +1,271 @@
+
+  ___  ____  ____  ____  ____ ®
+ /__    /   ____/   /   ____/      StataNow 19.5
+___/   /   /___/   /   /___/       BE—Basic Edition
+
+ Statistics and Data Science       Copyright 1985-2025 StataCorp LLC
+                                   StataCorp
+                                   4905 Lakeway Drive
+                                   College Station, Texas 77845 USA
+                                   800-782-8272        https://www.stata.com
+                                   979-696-4600        service@stata.com
+
+Stata license: Unlimited-user network, expiring 17 Sep 2026
+Serial number: 401909302451
+  Licensed to: Lund University
+               Lund City
+
+Notes:
+      1. Stata is running in batch mode.
+      2. Unicode is supported; see help unicode_advice.
+
+. do /home/aleri/NEKN33/exercise-1-nekn33-code/exercise_1.do 
+
+. cd .
+/home/aleri/NEKN33/exercise-1-nekn33-code
+
+. use "data/exercise_1.dta", clear
+
+. 
+. 
+. **missing values**
+. mvdecode _all, mv(9 99 999 9999 99999999 999999999)
+         sex: 16 missing values generated
+        race: 129 missing values generated
+         qob: 54 missing values generated
+         yob: 57 missing values generated
+      ctypek: 4561 missing values generated
+      ctype1: 4145 missing values generated
+      ctype2: 4151 missing values generated
+      ctype3: 4233 missing values generated
+      stypek: 4561 missing values generated
+       hdegk: 4581 missing values generated
+       cladk: 5071 missing values generated
+     totexpk: 4787 missing values generated
+      tracek: 4616 missing values generated
+       readk: 5027 missing values generated
+       mathk: 4951 missing values generated
+        sesk: 4581 missing values generated
+      stype1: 4145 missing values generated
+      trace1: 4194 missing values generated
+       hdeg1: 4161 missing values generated
+       clad1: 4181 missing values generated
+     totexp1: 4412 missing values generated
+       read1: 4520 missing values generated
+       math1: 4337 missing values generated
+        ses1: 4309 missing values generated
+      stype2: 4102 missing values generated
+      trace2: 4151 missing values generated
+       hdeg2: 4151 missing values generated
+       clad2: 4199 missing values generated
+     totexp2: 4492 missing values generated
+       read2: 4782 missing values generated
+       math2: 4791 missing values generated
+        ses2: 4399 missing values generated
+      stype3: 4188 missing values generated
+       read3: 4876 missing values generated
+       math3: 4808 missing values generated
+        ses3: 4424 missing values generated
+      trace3: 4233 missing values generated
+       hdeg3: 4248 missing values generated
+       clad3: 4233 missing values generated
+     totexp3: 4504 missing values generated
+      sysidk: 4615 missing values generated
+      sysid1: 4203 missing values generated
+      sysid2: 4179 missing values generated
+      sysid3: 4260 missing values generated
+      schidk: 4671 missing values generated
+      schid1: 4265 missing values generated
+      schid2: 4229 missing values generated
+      schid3: 4315 missing values generated
+      tchidk: string variable ignored
+      tchid1: string variable ignored
+      tchid2: string variable ignored
+      tchid3: string variable ignored
+
+. replace tchid1 = "." if tchid1 == "99999999"
+(4,145 real changes made)
+
+. replace tchid2 = "." if tchid2 == "999999999"
+(4,102 real changes made)
+
+. replace tchid3 = "." if tchid3 == "999999999"
+(4,188 real changes made)
+
+. replace tchidk = "." if tchidk == "99999999"
+(4,561 real changes made)
+
+. 
+. //Question 1a
+. **Gen lunchdummy**
+. gen lunchdummy = .
+(10,043 missing values generated)
+
+. replace lunchdummy = 1 if sesk == 1
+(2,631 real changes made)
+
+. replace lunchdummy = 0 if sesk == 2
+(2,831 real changes made)
+
+. **Race dummy**
+. gen whiteasiandummy = .
+(10,043 missing values generated)
+
+. replace whiteasiandummy = 1 if inlist(race, 1, 3)
+(6,271 real changes made)
+
+. replace whiteasiandummy = 0 if inlist(race, 2, 4, 5, 6)
+(3,643 real changes made)
+
+. **Age variable**
+. gen agein85 = .
+(10,043 missing values generated)
+
+. replace agein85 = 1985 - yob if yob < .
+(9,986 real changes made)
+
+. **Test scores**
+. gen scorek = .
+(10,043 missing values generated)
+
+. replace scorek = (mathk + readk) / 2 
+(5,013 real changes made)
+
+. gen score1 = .
+(10,043 missing values generated)
+
+. replace score1 = (math1 + read1) / 2 
+(5,509 real changes made)
+
+. gen score2 = .
+(10,043 missing values generated)
+
+. replace score2 = (math2 + read2) / 2 
+(5,236 real changes made)
+
+. gen score3 = .
+(10,043 missing values generated)
+
+. replace score3 = (math3 + read3) / 2 
+(5,140 real changes made)
+
+. **Output summary stats.**
+. estpost summarize lunchdummy whiteasiandummy agein85 scorek score1 score2 sco
+> re3
+
+             |  e(count)   e(sum_w)    e(mean)     e(Var)      e(sd) 
+-------------+-------------------------------------------------------
+  lunchdummy |      5462       5462   .4816917   .2497105   .4997104 
+whiteasian~y |      9914       9914   .6325398   .2324566   .4821376 
+     agein85 |      9986       9986   5.462548   .3946412   .6282048 
+      scorek |      5013       5013   461.2516   1383.095   37.18999 
+      score1 |      5509       5509   525.8471   2077.509    45.5797 
+      score2 |      5236       5236   582.4159   1778.542   42.17276 
+      score3 |      5140       5140    616.776   1325.831   36.41197 
+
+             |    e(min)     e(max)     e(sum) 
+-------------+---------------------------------
+  lunchdummy |         0          1       2631 
+whiteasian~y |         0          1       6271 
+     agein85 |         3          8      54549 
+      scorek |     317.5      626.5    2312255 
+      score1 |     413.5      663.5    2896892 
+      score2 |       465      726.5    3049530 
+      score3 |       513      763.5    3170229 
+
+. esttab using summary_stats.doc, replace ///
+>     cells("mean(fmt(3)) sd(fmt(3)) count") ///
+>     label
+(output written to summary_stats.doc)
+
+. 
+. 
+. //Q1 b
+. **1=small, 2=regular, 3=regular with aid**
+. **mean by class type**
+. label var lunchdummy "Free Lunch"
+
+. label var whiteasiandummy "White/Asian"
+
+. label var agein85 "Age in 1985"
+
+. label var scorek "Average Score (Kindergarten)"
+
+. label var score1 "Average Score (Grade 1)"
+
+. label var score2 "Average Score (Grade 2)"
+
+. label var score3 "Average Score (Grade 3)"
+
+. 
+. * Clear the old file to make idempotent
+. capture erase "tables/Table1.doc"
+
+. 
+. * Add labels for the table
+. label var lunchdummy "Free Lunch"
+
+. label var whiteasiandummy "White/Asian"
+
+. label var agein85 "Age in 1985"
+
+. 
+. local vars lunchdummy whiteasiandummy agein85 score`g' csize`g'
+
+. 
+. * 1. Set the file path
+. local outfile "Table1_Final.tex"
+
+. capture erase "`outfile'"
+
+. shell mkdir -p output/question_1
+
+
+. 
+. * The Loop
+. foreach g in k 1 2 3 {
+  2.     
+.     est sto clear
+  3.     
+.     * Define the variables for THIS specific grade loop
+.     local current_vars lunchdummy whiteasiandummy agein85 score`g' csize`g'
+  4. 
+.     * 1. Store the means for the three columns
+.     foreach t in 1 2 3 {
+  5.         quietly estpost summarize `current_vars' if ctype`g' == `t'
+  6.         est store grp`t'
+  7.     }
+  8. 
+.     * 2. Calculate Joint P-Values using regressions
+.     * We store these in a matrix or locals to add to the table
+.     foreach v of local current_vars {
+  9.         quietly reg `v' i.ctype`g'
+ 10.         quietly testparm i.ctype`g'
+ 11.         local pval = string(r(p), "%9.3f")
+ 12.         
+.         * We have to "stow" the p-value into the stored estimate
+.         * We'll attach it to grp3 so it appears as a trailing column/stat
+.         estadd local jointp_`v' = "`pval'" : grp3
+ 13.     }
+ 14. 
+. * 3. Export/Display to Log
+.     * Removed booktabs and added plain/compress for console readability
+.     esttab grp1 grp2 grp3 using "output/question_1/Table1.txt", ///
+>             cells("mean(fmt(3))") ///
+>             stats(jointp_lunchdummy jointp_whiteasiandummy jointp_agein85 joi
+> ntp_score`g' jointp_csize`g', ///
+>                 labels("P-val: Lunch" "P-val: Race" "P-val: Age" "P-val: Scor
+> e" "P-val: Size")) ///
+>             title("Panel: Grade `g'") ///
+>             mtitles("Small" "Regular" "Regular+Aide") ///
+>             label nodepvars nonumber ///
+>             varwidth(30) modelwidth(15) ///
+>             append plain
+ 15. }
+(output written to output/question_1/Table1.txt)
+(output written to output/question_1/Table1.txt)
+(output written to output/question_1/Table1.txt)
+(output written to output/question_1/Table1.txt)
+
+. 
+end of do-file

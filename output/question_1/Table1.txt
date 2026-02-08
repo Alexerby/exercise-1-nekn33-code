@@ -1,0 +1,104 @@
+Panel: Grade k
+                                         Small         Regular    Regular+Aide
+                                          mean            mean            mean
+Free Lunch                               0.468           0.480           0.495
+White/Asian                              0.686           0.676           0.660
+Age in 1985                              5.257           5.238           5.239
+Average Score (Kindergarten)           465.803         458.943         459.616
+Class size (based on teacher~)          15.396          22.375          23.257
+P-val: Lunch                                                             0.246
+P-val: Race                                                              0.238
+P-val: Age                                                               0.341
+P-val: Score                                                             0.000
+P-val: Size                                                              0.000
+Panel: Grade 1
+                                         Small         Regular    Regular+Aide
+                                          mean            mean            mean
+Free Lunch                               0.438           0.468           0.440
+White/Asian                              0.689           0.630           0.704
+Age in 1985                              5.333           5.423           5.424
+Average Score (Grade 1)                534.646         519.456         525.740
+Class size (based on teacher~)          15.690          22.689          23.420
+P-val: Lunch                                                             0.220
+P-val: Race                                                              0.000
+P-val: Age                                                               0.000
+P-val: Score                                                             0.000
+P-val: Size                                                              0.000
+Panel: Grade 2
+                                         Small         Regular    Regular+Aide
+                                          mean            mean            mean
+Free Lunch                               0.411           0.428           0.406
+White/Asian                              0.684           0.645           0.652
+Age in 1985                              5.428           5.517           5.509
+Average Score (Grade 2)                588.757         578.729         581.359
+Class size (based on teacher~)          15.310          23.464          23.469
+P-val: Lunch                                                             0.587
+P-val: Race                                                              0.033
+P-val: Age                                                               0.000
+P-val: Score                                                             0.000
+P-val: Size                                                              0.000
+Panel: Grade 3
+                                         Small         Regular    Regular+Aide
+                                          mean            mean            mean
+Free Lunch                               0.383           0.391           0.405
+White/Asian                              0.690           0.677           0.656
+Age in 1985                              5.487           5.545           5.554
+Average Score (Grade 3)                621.863         614.685         614.548
+Class size (based on teacher~)          15.714          23.610          24.435
+P-val: Lunch                                                             0.614
+P-val: Race                                                              0.075
+P-val: Age                                                               0.003
+P-val: Score                                                             0.000
+P-val: Size                                                              0.000
+Panel: Grade k
+                                         Small         Regular    Regular+Aide
+                                          mean            mean            mean
+Free Lunch                               0.468           0.480           0.495
+White/Asian                              0.686           0.676           0.660
+Age in 1985                              5.257           5.238           5.239
+Average Score (Kindergarten)           465.803         458.943         459.616
+Class size (based on teacher~)          15.396          22.375          23.257
+P-val: Lunch                                                             0.246
+P-val: Race                                                              0.238
+P-val: Age                                                               0.341
+P-val: Score                                                             0.000
+P-val: Size                                                              0.000
+Panel: Grade 1
+                                         Small         Regular    Regular+Aide
+                                          mean            mean            mean
+Free Lunch                               0.438           0.468           0.440
+White/Asian                              0.689           0.630           0.704
+Age in 1985                              5.333           5.423           5.424
+Average Score (Grade 1)                534.646         519.456         525.740
+Class size (based on teacher~)          15.690          22.689          23.420
+P-val: Lunch                                                             0.220
+P-val: Race                                                              0.000
+P-val: Age                                                               0.000
+P-val: Score                                                             0.000
+P-val: Size                                                              0.000
+Panel: Grade 2
+                                         Small         Regular    Regular+Aide
+                                          mean            mean            mean
+Free Lunch                               0.411           0.428           0.406
+White/Asian                              0.684           0.645           0.652
+Age in 1985                              5.428           5.517           5.509
+Average Score (Grade 2)                588.757         578.729         581.359
+Class size (based on teacher~)          15.310          23.464          23.469
+P-val: Lunch                                                             0.587
+P-val: Race                                                              0.033
+P-val: Age                                                               0.000
+P-val: Score                                                             0.000
+P-val: Size                                                              0.000
+Panel: Grade 3
+                                         Small         Regular    Regular+Aide
+                                          mean            mean            mean
+Free Lunch                               0.383           0.391           0.405
+White/Asian                              0.690           0.677           0.656
+Age in 1985                              5.487           5.545           5.554
+Average Score (Grade 3)                621.863         614.685         614.548
+Class size (based on teacher~)          15.714          23.610          24.435
+P-val: Lunch                                                             0.614
+P-val: Race                                                              0.075
+P-val: Age                                                               0.003
+P-val: Score                                                             0.000
+P-val: Size                                                              0.000
